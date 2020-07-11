@@ -1,14 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { Provider } from 'react-redux'
+import { createStore, combineReducers } from 'redux'
+import { reducer as formReducer } from 'redux-form'
+import Reducer from "./reducers";
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+const store = createStore(combineReducers({
+	contador: Reducer,
+	form: formReducer
+}))
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+	<Provider store={store}>
+		<App />
+	</Provider>,
+	document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
